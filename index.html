@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Typing Practice Pro</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- WELCOME SCREEN -->
+<div id="welcomeScreen" class="welcome-screen">
+  <div class="welcome-content">
+    <h1 class="welcome-title" id="welcomeTitle"></h1>
+    <p class="welcome-subtitle" id="welcomeSubtitle"></p>
+    <div class="welcome-credits" id="welcomeCredits">
+      <p class="credit-line" id="wCredit1"></p>
+      <p class="credit-line" id="wCredit2"></p>
+    </div>
+    <button class="welcome-btn" id="welcomeBtn" onclick="startApp()">
+      🎯 <span id="welcomeBtnText">Start</span>
+    </button>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="mainApp" class="main-app hidden">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-left">
+      <h1 class="logo">⌨️ <span id="appTitle">Typing Practice Pro</span></h1>
+    </div>
+    <div class="header-right">
+      <button class="hdr-btn" id="savedHdrBtn" onclick="openSavedModal()" title="Saved Sentences">📚</button>
+      <button class="hdr-btn" id="feedbackHdrBtn" onclick="openModal('feedbackModal')" title="Feedback">💬</button>
+      <button class="hdr-btn" id="settingsHdrBtn" onclick="openModal('settingsModal')" title="Settings">⚙️</button>
+      <button class="hdr-btn" id="aboutHdrBtn" onclick="openModal('aboutModal')" title="About">ℹ️</button>
+    </div>
+  </header>
+
+  <!-- TEST CONFIG BAR -->
+  <div class="config-bar">
+    <label class="cfg-item">
+      <span>⏱️</span>
+      <select id="timeSelect" onchange="resetTest()">
+        <option value="15">15s</option>
+        <option value="30">30s</option>
+        <option value="60" selected>60s</option>
+        <option value="120">120s</option>
+        <option value="300">5 min</option>
+        <option value="0">∞</option>
+      </select>
+    </label>
+
+    <label class="cfg-item">
+      <span>📝</span>
+      <select id="modeSelect" onchange="onModeChange()">
+        <option value="words" selected>Words</option>
+        <option value="paragraph">Paragraph</option>
+        <option value="custom">Custom</option>
+      </select>
+    </label>
+
+    <label class="cfg-item">
+      <span>🎯</span>
+      <select id="diffSelect" onchange="resetTest()">
+        <option value="easy">Easy</option>
+        <option value="medium" selected>Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+    </label>
+
+    <label class="cfg-item">
+      <span>🌐</span>
+      <select id="textLangSelect" onchange="resetTest()">
+        <option value="en" selected>English</option>
+        <option value="bn">বাংলা</option>
+      </select>
+    </label>
+
+    <!-- Custom selector (only shows in Custom mode) -->
+    <label class="cfg-item hidden" id="customSelectorWrap">
+      <span>📄</span>
+      <select id="customSelector" onchange="resetTest()">
+        <option value="__random__">🎲 Random</option>
+      </select>
+    </label>
+
+    <button class="cfg-btn" id="soundBtn" onclick="toggleSound()">🔊</button>
+    <button class="cfg-btn" id="pauseBtn" onclick="togglePause()">⏸️</button>
+    <button class="cfg-btn" id="stopBtn" onclick="resetTest()">🔄</button>
+  </div>
+
+  <!-- MAIN TYPING AREA -->
+  <main class="main-area">
+    <div id="text" class="text-display"></div>
+    <input id="input" class="typing-input" type="text" autocomplete="off" spellcheck="false" placeholder="Start typing...">
+    
+    <!-- LIVE STATS -->
+    <div class="stats-bar">
+      <div class="stat"><span>⚡ WPM</span><strong id="wpm">0</strong></div>
+      <div class="stat"><span>🎯 Accuracy</span><strong id="acc">100%</strong></div>
+      <div class="stat"><span>⏱️ Time</span><strong id="time">0s</strong></div>
+      <div class="stat"><span>✅ Correct</span><strong id="correctCount">0</strong></div>
+      <div class="stat"><span>❌ Wrong</span><strong id="wrongCount">0</strong></div>
+      <div class="stat"><span>🏆 Best</span><strong id="bestScore">0</strong></div>
+    </div>
+
+    <div class="action-row">
+      <button class="btn-primary" onclick="resetTest()">🔄 <span id="btnRestart">Restart</span></button>
+      <button class="btn-secondary" onclick="openSavedModal()">✏️ <span id="btnCustom">My Sentences</span></button>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span id="footerText">Idea & Advisor: Nishat Hossain Badhon | Crafted by: DeepSeek AI</span>
+  </footer>
+</div>
+
+<!-- RESULT MODAL -->
+<div class="modal" id="resultModal">
+  <div class="modal-content">
+    <h2 class="modal-title">🎉 <span id="resultTitle">Test Complete!</span></h2>
+    <div class="result-list">
+      <div class="result-row"><span>⚡ WPM</span><strong id="rWpm">0</strong></div>
+      <div class="result-row"><span>🎯 Accuracy</span><strong id="rAcc">0%</strong></div>
+      <div class="result-row"><span>⏱️ Time</span><strong id="rTime">0s</strong></div>
+      <div class="result-row"><span>✅ Correct</span><strong id="rCorrect">0</strong></div>
+      <div class="result-row"><span>❌ Wrong</span><strong id="rWrong">0</strong></div>
+      <div class="result-row"><span>📊 CPM</span><strong id="rCpm">0</strong></div>
+    </div>
+    <div id="newRecord" class="new-record hidden">🏆 <span id="newRecordText">New Record!</span></div>
+    <div class="modal-actions">
+      <button class="btn-primary" onclick="closeModal('resultModal'); resetTest();">🔄 <span id="btnTryAgain">Try Again</span></button>
+      <button class="btn-secondary" onclick="copyResult()">📋 <span id="btnCopy">Copy</span></button>
+      <button class="btn-secondary" onclick="closeModal('resultModal')">🏠 <span id="btnHome">Home</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- SAVED SENTENCES MODAL (নতুন সিস্টেম) -->
+<div class="modal" id="savedModal">
+  <div class="modal-content modal-wide">
+    <button class="modal-close" onclick="closeModal('savedModal')">✖️</button>
+    <h2 class="modal-title">📚 <span id="savedTitle">Saved Sentences</span></h2>
+
+    <div class="custom-tabs">
+      <button class="ctab active" id="stabEn" onclick="switchSavedTab('en')">🇬🇧 English</button>
+      <button class="ctab" id="stabBn" onclick="switchSavedTab('bn')">🇧🇩 বাংলা</button>
+    </div>
+
+    <!-- ADD NEW -->
+    <label class="fb-label" id="savedAddLabel">➕ Add New Sentence</label>
+    <textarea id="savedAddInput" class="custom-textarea" placeholder="Type a word or sentence to add..."></textarea>
+    <div class="add-row">
+      <button class="btn-primary" onclick="addSavedSentence()">➕ <span id="btnAddSaved">Add</span></button>
+      <button class="btn-secondary hidden" id="cancelEditBtn" onclick="cancelEdit()">✖️ <span id="btnCancelEdit">Cancel Edit</span></button>
+    </div>
+
+    <!-- LIST -->
+    <div class="saved-list-header">
+      <span id="savedListLabel">📋 Saved List</span>
+      <span class="saved-list-count" id="savedListCount">0</span>
+    </div>
+    <div id="savedList" class="saved-list"></div>
+
+  </div>
+</div>
+
+<!-- ABOUT & ROADMAP MODAL -->
+<div class="modal" id="aboutModal">
+  <div class="modal-content modal-wide">
+    <button class="modal-close" onclick="closeModal('aboutModal')">✖️</button>
+    <h2 class="modal-title">ℹ️ <span id="aboutTitle">About & Roadmap</span></h2>
+
+    <div class="about-tabs">
+      <button class="atab active" onclick="switchAboutTab('about', this)" id="atabAbout">📖 About</button>
+      <button class="atab" onclick="switchAboutTab('v1', this)">✨ V1</button>
+      <button class="atab" onclick="switchAboutTab('v2', this)">🚀 V2</button>
+      <button class="atab" onclick="switchAboutTab('v3', this)">🌌 V3</button>
+      <button class="atab" onclick="switchAboutTab('v4', this)">💎 V4</button>
+    </div>
+
+    <div class="about-body" id="aboutBody"></div>
+  </div>
+</div>
+
+<!-- FEEDBACK MODAL -->
+<div class="modal" id="feedbackModal">
+  <div class="modal-content modal-wide">
+    <button class="modal-close" onclick="closeModal('feedbackModal')">✖️</button>
+    <h2 class="modal-title">💬 <span id="fbTitle">Your Feedback</span></h2>
+    <p class="modal-help" id="fbHelp">Your thoughts help us improve. Fill what you like.</p>
+
+    <label class="fb-label" id="fbNameLabel">👤 Your Name (optional)</label>
+    <input type="text" id="fbName" class="fb-input" placeholder="">
+
+    <label class="fb-label" id="fbRatingLabel">⭐ Rating (optional)</label>
+    <div class="star-row" id="starRow">
+      <span class="star" data-val="1">☆</span>
+      <span class="star" data-val="2">☆</span>
+      <span class="star" data-val="3">☆</span>
+      <span class="star" data-val="4">☆</span>
+      <span class="star" data-val="5">☆</span>
+    </div>
+
+    <label class="fb-label" id="fbCatLabel">🏷️ Category (multiple)</label>
+    <div class="cat-row" id="catRow">
+      <label class="cat-item"><input type="checkbox" value="Praise"> 🌟 <span>Praise</span></label>
+      <label class="cat-item"><input type="checkbox" value="Bug"> 🐛 <span>Bug</span></label>
+      <label class="cat-item"><input type="checkbox" value="Idea"> 💡 <span>Idea</span></label>
+      <label class="cat-item"><input type="checkbox" value="Suggestion"> 📈 <span>Suggestion</span></label>
+      <label class="cat-item"><input type="checkbox" value="Question"> ❓ <span>Question</span></label>
+    </div>
+
+    <label class="fb-label" id="fbCommentLabel">📝 Your Comment *</label>
+    <textarea id="fbComment" class="custom-textarea" placeholder=""></textarea>
+
+    <div class="modal-actions">
+      <button class="btn-primary" onclick="submitFeedback()">💾 <span id="fbSubmit">Submit & Download</span></button>
+      <button class="btn-secondary" onclick="clearFeedback()">🗑️ <span id="fbClear">Clear</span></button>
+    </div>
+
+    <p class="modal-note" id="fbNote">💡 Submitting will download a .txt file you can share anywhere.</p>
+  </div>
+</div>
+
+<!-- SETTINGS MODAL -->
+<div class="modal" id="settingsModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('settingsModal')">✖️</button>
+    <h2 class="modal-title">⚙️ <span id="setTitle">Settings</span></h2>
+
+    <div class="setting-row">
+      <span id="setLangLabel">🌐 UI Language</span>
+      <div class="toggle-group">
+        <button class="tg-btn active" id="uiLangEn" onclick="setUILang('en')">English</button>
+        <button class="tg-btn" id="uiLangBn" onclick="setUILang('bn')">বাংলা</button>
+      </div>
+    </div>
+
+    <div class="setting-row">
+      <span id="setThemeLabel">🎨 Theme</span>
+      <div class="toggle-group">
+        <button class="tg-btn active" id="themeDark" onclick="setTheme('dark')">🌙 Dark</button>
+        <button class="tg-btn" id="themeLight" onclick="setTheme('light')">☀️ Light</button>
+      </div>
+    </div>
+
+    <div class="setting-row">
+      <span id="setSoundLabel">🔊 Sound</span>
+      <div class="toggle-group">
+        <button class="tg-btn active" id="soundOn" onclick="setSound(true)">On</button>
+        <button class="tg-btn" id="soundOff" onclick="setSound(false)">Off</button>
+      </div>
+    </div>
+
+    <div class="setting-row">
+      <span id="setDataLabel">💾 Backup</span>
+      <div class="toggle-group">
+        <button class="tg-btn" onclick="exportData()">📤 Export</button>
+        <button class="tg-btn" onclick="document.getElementById('importFile').click()">📥 Import</button>
+        <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(event)">
+      </div>
+    </div>
+
+    <div class="setting-row">
+      <span id="setResetLabel">🗑️ Reset All Data</span>
+      <button class="btn-danger" onclick="resetAllData()">Reset</button>
+    </div>
+
+    <p class="modal-note" id="setNote">💾 All data stays on your device.</p>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast" class="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
