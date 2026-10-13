@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════════════════
-   Typing Practice Pro — Main Script (v1.2 — Bug Fix)
+   Typing Practice Pro — Main Script (v1.3 — Bug Fix & Gemini Update)
    Idea & Advisor: Nishat Hossain Badhon
-   Crafted by: DeepSeek AI
+   Crafted by: DeepSeek AI & Gemini
    ═══════════════════════════════════════════════════════ */
 
 /* ─── 1. WORDS DATABASE ───────────────────────────── */
@@ -42,26 +42,26 @@ const WORDS = {
   },
   bn: {
     easy: [
-      "বই","কলম","ঘর","বাড়ি","গাছ","ফুল","পাখি","মাছ","গরু","ছাগল",
-      "নদী","পাহাড়","আকাশ","সূর্য","চাঁদ","তারা","মেঘ","বৃষ্টি","হাত","পা",
+      "বই","কলম","ঘর","বাড়ি","গাছ","ফুল","পাখি","মাছ","গরু","ছাগল",
+      "নদী","পাহাড়","আকাশ","সূর্য","চাঁদ","তারা","মেঘ","বৃষ্টি","হাত","পা",
       "চোখ","কান","নাক","মুখ","মাথা","চুল","জল","দুধ","ভাত","রুটি",
-      "আম","কাঁঠাল","কলা","পেঁয়াজ","রসুন","মরিচ","লবণ","চিনি","তেল","ঘি",
-      "মা","বাবা","ভাই","বোন","দাদা","দাদি","নানা","নানি","ছেলে","মেয়ে",
+      "আম","কাঁঠাল","কলা","পেঁয়াজ","রসুন","মরিচ","লবণ","চিনি","তেল","ঘি",
+      "মা","বাবা","ভাই","বোন","দাদা","দাদি","নানা","নানি","ছেলে","মেয়ে",
       "শহর","গ্রাম","দেশ","বিদেশ","স্কুল","কলেজ","বাজার","দোকান","রাস্তা","ঘাট"
     ],
     medium: [
       "বাংলাদেশ,","রাজধানী,","ঢাকা,","চট্টগ্রাম,","খুলনা,","রাজশাহী,","সিলেট,","বরিশাল,",
-      "পরিবার,","সমাজ,","শিক্ষক,","শিক্ষার্থী,","বিদ্যালয়,","বিশ্ববিদ্যালয়,","গ্রন্থাগার,",
+      "পরিবার,","সমাজ,","শিক্ষক,","শিক্ষার্থী,","বিদ্যালয়,","বিশ্ববিদ্যালয়,","গ্রন্থাগার,",
       "পর্বত,","সমুদ্র,","মরুভূমি,","বনভূমি,","হ্রদ,","ঝর্ণা,","প্রকৃতি,","প্রাণী,",
       "প্রজাপতি,","হাতি,","জিরাফ,","বানর,","খরগোশ,","কাছিম,","ডলফিন,","তিমি,","হাঙর,","পেঙ্গুইন,",
       "বিমান,","সাইকেল,","মোটরসাইকেল,","হাসপাতাল,","রেস্টুরেন্ট,","স্টেশন,",
       "ভ্রমণ,","ছুটি,","সপ্তাহান্ত,","জন্মদিন,","উৎসব,","উদযাপন,","ঐতিহ্য,","সংস্কৃতি,"
     ],
     hard: [
-      "অসাধারণ,","বিস্ময়কর,","চমকপ্রদ,","অবিশ্বাস্য,","প্রযুক্তিগত,","পরিবেশগত,",
+      "অসাধারণ,","বিস্ময়কর,","চমকপ্রদ,","অবিশ্বাস্য,","প্রযুক্তিগত,","পরিবেশগত,",
       "স্থাপত্য,","দার্শনিক,","মনস্তাত্ত্বিক,","গাণিতিক,","জ্যোতির্বিজ্ঞান,","ভৌগোলিক,",
-      "যোগাযোগ,","আন্তর্জাতিক,","দায়িত্ব,","সুযোগ,","সম্ভাবনা,","উন্নয়ন,","অর্জন,",
-      "উন্নতি,","প্রতিষ্ঠা,","উৎসাহ,","বোঝাপড়া,","বিবেচনা,","তদন্ত,","সংকল্প,","একাগ্রতা,",
+      "যোগাযোগ,","আন্তর্জাতিক,","দায়িত্ব,","সুযোগ,","সম্ভাবনা,","উন্নয়ন,","অর্জন,",
+      "উন্নতি,","প্রতিষ্ঠা,","উৎসাহ,","বোঝাপড়া,","বিবেচনা,","তদন্ত,","সংকল্প,","একাগ্রতা,",
       "কল্পনা,","অনুপ্রেরণা,","প্রেরণা,","উদযাপন,","ব্যাখ্যা,","সম্পাদনা,"
     ]
   }
@@ -87,17 +87,17 @@ const PARAGRAPHS = {
   },
   bn: {
     easy: [
-      "সূর্য পূর্ব দিকে ওঠে এবং পশ্চিম দিকে অস্ত যায়। প্রতিটি সকাল নতুন আশা নিয়ে আসে। মানুষ ঘুম থেকে উঠে কাজ শুরু করে। শিশুরা ব্যাগ নিয়ে স্কুলে যায়। কৃষকরা মাঠে পরিশ্রম করে। পাখিরা গাছে মিষ্টি গান গায়। আমাদের এই পৃথিবী সত্যিই সুন্দর।",
-      "বই পড়া একটি মহৎ অভ্যাস। এটি আমাদের নতুন জিনিস শিখতে সাহায্য করে। একটি ভালো বই আমাদের জীবনের অনেক শিক্ষা দিতে পারে। আমরা গল্পের বই, বিজ্ঞানের বই বা ইতিহাসের বই পড়তে পারি। প্রতিদিন পড়া আমাদের আরও বুদ্ধিমান করে তোলে। প্রত্যেকের উচিত মাসে অন্তত একটি বই পড়া।",
-      "পানি হলো জীবন। পানি ছাড়া কোনো প্রাণী বাঁচতে পারে না। আমরা প্রতিদিন পানি পান করি। গাছের বেড়ে ওঠার জন্য পানি প্রয়োজন। প্রাণীদের বেঁচে থাকার জন্য পানি দরকার। আমাদের সর্বদা পানি বাঁচানো উচিত কারণ এটি অমূল্য। প্রতিটি বিন্দু গুরুত্বপূর্ণ।"
+      "সূর্য পূর্ব দিকে ওঠে এবং পশ্চিম দিকে অস্ত যায়। প্রতিটি সকাল নতুন আশা নিয়ে আসে। মানুষ ঘুম থেকে উঠে কাজ শুরু করে। শিশুরা ব্যাগ নিয়ে স্কুলে যায়। কৃষকরা মাঠে পরিশ্রম করে। পাখিরা গাছে মিষ্টি গান গায়। আমাদের এই পৃথিবী সত্যিই সুন্দর।",
+      "বই পড়া একটি মহৎ অভ্যাস। এটি আমাদের নতুন জিনিস শিখতে সাহায্য করে। একটি ভালো বই আমাদের জীবনের অনেক শিক্ষা দিতে পারে। আমরা গল্পের বই, বিজ্ঞানের বই বা ইতিহাসের বই পড়তে পারি। প্রতিদিন পড়া আমাদের আরও বুদ্ধিমান করে তোলে। প্রত্যেকের উচিত মাসে অন্তত একটি বই পড়া।",
+      "পানি হলো জীবন। পানি ছাড়া কোনো প্রাণী বাঁচতে পারে না। আমরা প্রতিদিন পানি পান করি। গাছের বেড়ে ওঠার জন্য পানি প্রয়োজন। প্রাণীদের বেঁচে থাকার জন্য পানি দরকার। আমাদের সর্বদা পানি বাঁচানো উচিত কারণ এটি অমূল্য। প্রতিটি বিন্দু গুরুত্বপূর্ণ।"
     ],
     medium: [
-      "শিক্ষা হলো সবচেয়ে শক্তিশালী অস্ত্র যা দিয়ে আপনি বিশ্বকে বদলাতে পারেন। এটি জীবনে সফলতার চাবিকাঠি। একটি ভালো শিক্ষা সুযোগের অনেক দরজা খুলে দেয়। এটি আমাদের চিন্তা করতে, সমস্যা সমাধান করতে এবং অন্যদের সাথে যোগাযোগ করতে শেখায়। শিক্ষা শুধু বই এবং পরীক্ষার বিষয় নয়, বরং মূল্যবোধ, শৃঙ্খলা এবং অন্যদের প্রতি সম্মান শেখার বিষয়। প্রত্যেকেরই শিক্ষার অধিকার রয়েছে। চলুন একসাথে কাজ করি আমাদের বিশ্বকে আরও ভালো জায়গা করতে।",
-      "প্রযুক্তি আমাদের জীবনকে অনেকভাবে বদলে দিয়েছে। আমরা প্রতিদিন স্মার্টফোন, কম্পিউটার এবং ইন্টারনেট ব্যবহার করি। যোগাযোগ এখন আগের চেয়ে অনেক সহজ এবং দ্রুত। আমরা সেকেন্ডের মধ্যে বিশ্বজুড়ে মানুষের সাথে কথা বলতে পারি। আমরা অনলাইনে নতুন জিনিস শিখতে পারি, বাড়ি থেকে কাজ করতে পারি এবং লক্ষ লক্ষ মানুষের সাথে আমাদের ধারণা শেয়ার করতে পারি। তবে আমাদের সতর্কও থাকতে হবে। অতিরিক্ত স্ক্রিন টাইম আমাদের স্বাস্থ্যের জন্য ভালো নয়। ভারসাম্যই মূল চাবিকাঠি।",
-      "বাংলাদেশের প্রকৃতি অপরূপ সৌন্দর্যে ভরা। এদেশের নদী, নালা, খাল, বিল, পুকুর, সবুজ ক্ষেত এবং গাছপালা সত্যিই মনোমুগ্ধকর। এখানকার মানুষ অত্যন্ত আন্তরিক এবং অতিথিপরায়ণ। এই দেশের ষড়ঋতুর বৈচিত্র্য সত্যিই অনন্য। বর্ষায় নদীগুলো ভরে ওঠে, শীতে কুয়াশায় ঢেকে যায় চারদিক, গ্রীষ্মে তীব্র গরম, আর বসন্তে ফুলে ফুলে ভরে যায় গাছ। আমাদের উচিত এই সৌন্দর্য রক্ষা করা এবং ভবিষ্যৎ প্রজন্মের জন্য সংরক্ষণ করা।"
+      "শিক্ষা হলো সবচেয়ে শক্তিশালী অস্ত্র যা দিয়ে আপনি বিশ্বকে বদলাতে পারেন। এটি জীবনে সফলতার চাবিকাঠি। একটি ভালো শিক্ষা সুযোগের অনেক দরজা খুলে দেয়। এটি আমাদের চিন্তা করতে, সমস্যা সমাধান করতে এবং অন্যদের সাথে যোগাযোগ করতে শেখায়। শিক্ষা শুধু বই এবং পরীক্ষার বিষয় নয়, বরং মূল্যবোধ, শৃঙ্খলা এবং অন্যদের প্রতি সম্মান শেখার বিষয়। প্রত্যেকেরই শিক্ষার অধিকার রয়েছে। চলুন একসাথে কাজ করি আমাদের বিশ্বকে আরও ভালো জায়গা করতে।",
+      "প্রযুক্তি আমাদের জীবনকে অনেকভাবে বদলে দিয়েছে। আমরা প্রতিদিন স্মার্টফোন, কম্পিউটার এবং ইন্টারনেট ব্যবহার করি। যোগাযোগ এখন আগের চেয়ে অনেক সহজ এবং দ্রুত। আমরা সেকেন্ডের মধ্যে বিশ্বজুড়ে মানুষের সাথে কথা বলতে পারি। আমরা অনলাইনে নতুন জিনিস শিখতে পারি, বাড়ি থেকে কাজ করতে পারি এবং লক্ষ লক্ষ মানুষের সাথে আমাদের ধারণা শেয়ার করতে পারি। তবে আমাদের সতর্কও থাকতে হবে। অতিরিক্ত স্ক্রিন টাইম আমাদের স্বাস্থ্যের জন্য ভালো নয়। ভারসাম্যই মূল চাবিকাঠি।",
+      "বাংলাদেশের প্রকৃতি অপরূপ সৌন্দর্যে ভরা। এদেশের নদী, নালা, খাল, বিল, পুকুর, সবুজ ক্ষেত এবং গাছপালা সত্যিই মনোমুগ্ধকর। এখানকার মানুষ অত্যন্ত আন্তরিক এবং অতিথিপরায়ণ। এই দেশের ষড়ঋতুর বৈচিত্র্য সত্যিই অনন্য। বর্ষায় নদীগুলো ভরে ওঠে, শীতে কুয়াশায় ঢেকে যায় চারদিক, গ্রীষ্মে তীব্র গরম, আর বসন্তে ফুলে ফুলে ভরে যায় গাছ। আমাদের উচিত এই সৌন্দর্য রক্ষা করা এবং ভবিষ্যৎ প্রজন্মের জন্য সংরক্ষণ করা।"
     ],
     hard: [
-      "প্রোগ্রামিং শেখার মূল রহস্য হলো ধৈর্য ধরে প্রতিদিন অনুশীলন করা এবং ছোট ছোট সমস্যা সমাধান করে এগিয়ে যাওয়া। প্রোগ্রামিং শুধু কোড লেখা নয়, বরং চিন্তা করার একটি শিল্প। যখন আপনি একটি সমস্যার সমাধান করেন, তখন আপনার মস্তিষ্ক নতুন নতুন সংযোগ তৈরি করে। প্রতিটি ভুল একটি শিক্ষা, প্রতিটি বাধা একটি সুযোগ। প্রকৃত প্রোগ্রামার তারাই যারা হার মানেন না, বরং প্রতিনিধিত্ব করেন। তাদের কাছে প্রতিটি জটিল সমস্যা একটি মজার ধাঁধা। সময়ের সাথে সাথে অভিজ্ঞতা অর্জিত হয়, এবং অভিজ্ঞতার সাথে আসে আত্মবিশ্বাস।"
+      "প্রোগ্রামিং শেখার মূল রহস্য হলো ধৈর্য ধরে প্রতিদিন অনুশীলন করা এবং ছোট ছোট সমস্যা সমাধান করে এগিয়ে যাওয়া। প্রোগ্রামিং শুধু কোড লেখা নয়, বরং চিন্তা করার একটি শিল্প। যখন আপনি একটি সমস্যার সমাধান করেন, তখন আপনার মস্তিষ্ক নতুন নতুন সংযোগ তৈরি করে। প্রতিটি ভুল একটি শিক্ষা, প্রতিটি বাধা একটি সুযোগ। প্রকৃত প্রোগ্রামার তারাই যারা হার মানেন না, বরং প্রতিনিধিত্ব করেন। তাদের কাছে প্রতিটি জটিল সমস্যা একটি মজার ধাঁধা। সময়ের সাথে সাথে অভিজ্ঞতা অর্জিত হয়, এবং অভিজ্ঞতার সাথে আসে আত্মবিশ্বাস।"
     ]
   }
 };
@@ -109,7 +109,7 @@ const TRANSLATIONS = {
     welcomeTitle: "Typing Practice Pro",
     welcomeSubtitle: "For the love of typing",
     credit1: "Idea & Advisor: Nishat Hossain Badhon",
-    credit2: "Crafted by: DeepSeek AI",
+    credit2: "Crafted by: DeepSeek AI & Gemini",
     startBtn: "Start",
     restart: "Restart",
     mySentences: "My Sentences",
@@ -150,7 +150,7 @@ const TRANSLATIONS = {
     setData: "💾 Backup",
     setReset: "🗑️ Reset All Data",
     setNote: "💾 All data stays on your device.",
-    footerText: "Idea & Advisor: Nishat Hossain Badhon | Crafted by: DeepSeek AI",
+    footerText: "Idea & Advisor: Nishat Hossain Badhon | Crafted by: DeepSeek AI & Gemini",
     toastSaved: "✅ Saved successfully!",
     toastAdded: "✅ Added!",
     toastUpdated: "✅ Updated!",
@@ -176,8 +176,8 @@ const TRANSLATIONS = {
     appTitle: "টাইপিং প্র্যাকটিস প্রো",
     welcomeTitle: "টাইপিং প্র্যাকটিস প্রো",
     welcomeSubtitle: "টাইপিং শেখার আনন্দে",
-    credit1: "আইডিয়া ও উপদেষ্টা: নিশাত হোসেন বাধন",
-    credit2: "তৈরি করেছে: DeepSeek AI",
+    credit1: "আইডিয়া ও উপদেষ্টা: নিশাত হোসেন বাধন",
+    credit2: "তৈরি করেছে: DeepSeek AI ও Gemini",
     startBtn: "শুরু করুন",
     restart: "আবার শুরু",
     mySentences: "আমার বাক্য",
@@ -185,7 +185,7 @@ const TRANSLATIONS = {
     wrong: "ভুল",
     best: "সেরা",
     accuracy: "নির্ভুলতা",
-    time: "সময়",
+    time: "সময়",
     wpm: "WPM",
     resultTitle: "টেস্ট সম্পন্ন!",
     tryAgain: "আবার চেষ্টা",
@@ -200,7 +200,7 @@ const TRANSLATIONS = {
     cancelEdit: "এডিট বাতিল",
     editBtn: "এডিট",
     deleteBtn: "মুছুন",
-    savedEmpty: "এখনো কোনো বাক্য সেভ করা হয়নি। উপরে প্রথমটি যোগ করুন!",
+    savedEmpty: "এখনো কোনো বাক্য সেভ করা হয়নি। উপরে প্রথমটি যোগ করুন!",
     aboutTitle: "পরিচিতি ও রোডম্যাপ",
     fbTitle: "আপনার মতামত",
     fbHelp: "আপনার মতামত আমাদের উন্নত করতে সাহায্য করে।",
@@ -218,17 +218,17 @@ const TRANSLATIONS = {
     setData: "💾 ব্যাকআপ",
     setReset: "🗑️ সব ডেটা রিসেট",
     setNote: "💾 সব ডেটা আপনার ডিভাইসেই থাকে।",
-    footerText: "আইডিয়া ও উপদেষ্টা: নিশাত হোসেন বাধন | তৈরি: DeepSeek AI",
-    toastSaved: "✅ সফলভাবে সেভ হয়েছে!",
-    toastAdded: "✅ যোগ করা হয়েছে!",
-    toastUpdated: "✅ আপডেট হয়েছে!",
-    toastDeleted: "🗑️ মুছে ফেলা হয়েছে!",
-    toastCleared: "🗑️ মুছে ফেলা হয়েছে!",
-    toastCopied: "📋 ক্লিপবোর্ডে কপি হয়েছে!",
-    toastExported: "📤 ব্যাকআপ ডাউনলোড হয়েছে!",
-    toastImported: "📥 ব্যাকআপ ইমপোর্ট হয়েছে!",
-    toastReset: "🗑️ সব ডেটা রিসেট হয়েছে!",
-    toastFeedback: "✅ মতামত ডাউনলোড হয়েছে! ধন্যবাদ!",
+    footerText: "আইডিয়া ও উপদেষ্টা: নিশাত হোসেন বাধন | তৈরি: DeepSeek AI ও Gemini",
+    toastSaved: "✅ সফলভাবে সেভ হয়েছে!",
+    toastAdded: "✅ যোগ করা হয়েছে!",
+    toastUpdated: "✅ আপডেট হয়েছে!",
+    toastDeleted: "🗑️ মুছে ফেলা হয়েছে!",
+    toastCleared: "🗑️ মুছে ফেলা হয়েছে!",
+    toastCopied: "📋 ক্লিপবোর্ডে কপি হয়েছে!",
+    toastExported: "📤 ব্যাকআপ ডাউনলোড হয়েছে!",
+    toastImported: "📥 ব্যাকআপ ইমপোর্ট হয়েছে!",
+    toastReset: "🗑️ সব ডেটা রিসেট হয়েছে!",
+    toastFeedback: "✅ মতামত ডাউনলোড হয়েছে! ধন্যবাদ!",
     toastNoComment: "⚠️ অনুগ্রহ করে মন্তব্য লিখুন।",
     toastNoData: "⚠️ কপি করার কিছু নেই।",
     toastImportFail: "❌ ভুল ফাইল।",
@@ -277,6 +277,7 @@ let test = {
 let audioCtx = null;
 let currentAboutTab = "about";
 let editingIndex = -1;   // -1 = new, >=0 = editing existing
+let isComposing = false; // ★ অভ্র/বিজয় বা বাংলা IME টাইপিং ট্র্যাক করার জন্য ফ্লাগ
 
 /* ─── 5. STORAGE ──────────────────────────────────── */
 function saveState() {
@@ -494,11 +495,9 @@ function generateTarget() {
 
   if (mode === "words") {
     const words = pickWords(lang, diff, 30);
-    // Easy: space only. Medium/Hard: words already have comma suffix.
     if (diff === "easy") {
       return words.join(" ");
     } else {
-      // Words in DB already end with ",". Just join with space.
       return words.join(" ");
     }
   }
@@ -562,11 +561,7 @@ function renderText() {
 
   const cursor = textEl.querySelector(".current");
   if (cursor) {
-    const rect = cursor.getBoundingClientRect();
-    const box = textEl.getBoundingClientRect();
-    if (rect.bottom > box.bottom - 20 || rect.top < box.top + 20) {
-      cursor.scrollIntoView({ block: "center", behavior: "smooth" });
-    }
+    cursor.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" });
   }
 }
 
@@ -611,10 +606,16 @@ function updateStats() {
     Math.max(state.bestScores.en, state.bestScores.bn) || 0;
 }
 
+
 /* ─── 19. INPUT HANDLING ──────────────────────────── */
 function handleInput(e) {
+  if (isComposing) return;
+
   const input = document.getElementById("input");
-  const typed = input.value;
+  
+  // ★ এখানে NFKC নরমালাইজেশন ব্যবহার করা হলো যা ড + নুতা কে একটি একক 'ড়' তে রূপান্তর করে মেলাবে
+  const typed = input.value.normalize('NFKC');
+  const target = test.target.normalize('NFKC');
 
   if (test.isFinished) return;
 
@@ -623,38 +624,29 @@ function handleInput(e) {
     startTimer();
   }
 
-  const prevLen = test.lastTyped.length;
+  let correct = 0;
+  let wrong = 0;
 
-  if (typed.length > prevLen) {
-    const newChars = typed.slice(prevLen);
-    for (let i = 0; i < newChars.length; i++) {
-      const idx = prevLen + i;
-      if (idx < test.target.length) {
-        if (newChars[i] === test.target[idx]) {
-          test.correctKeys++;
-        } else {
-          test.wrongKeys++;
+  for (let i = 0; i < typed.length; i++) {
+    if (i < target.length) {
+      if (typed[i] === target[i]) {
+        correct++;
+      } else {
+        wrong++;
+        if (i === typed.length - 1 && typed.length > test.lastTyped.length) {
           playWrong();
         }
       }
-    }
-  } else if (typed.length < prevLen) {
-    const removed = prevLen - typed.length;
-    for (let i = 0; i < removed; i++) {
-      const idx = prevLen - 1 - i;
-      if (idx < test.target.length) {
-        if (test.target[idx] === test.lastTyped[idx]) {
-          if (test.correctKeys > 0) test.correctKeys--;
-        } else {
-          if (test.wrongKeys > 0) test.wrongKeys--;
-        }
-      }
+    } else {
+      wrong++;
     }
   }
 
+  test.correctKeys = correct;
+  test.wrongKeys = wrong;
   test.lastTyped = typed;
 
-  if (typed.length >= test.target.length) {
+  if (typed.length >= target.length) {
     if (test.timeLimit === 0 || state.mode === "paragraph" || state.mode === "custom") {
       finishTest();
       return;
@@ -665,6 +657,8 @@ function handleInput(e) {
   renderText();
   updateStats();
 }
+
+
 
 /* ─── 20. FINISH TEST ─────────────────────────────── */
 function finishTest() {
@@ -774,9 +768,9 @@ function togglePause() {
   }
 }
 
-/* ─── 23. SAVED SENTENCES (নতুন সিস্টেম) ──────────── */
+/* ─── 23. SAVED SENTENCES ─────────────────────────── */
 function openSavedModal() {
-  cancelEdit(); // reset edit state
+  cancelEdit();
   document.getElementById("savedAddInput").value = "";
   renderSavedList();
   openModal("savedModal");
@@ -803,12 +797,10 @@ function addSavedSentence() {
   if (!state.customSentences[lang]) state.customSentences[lang] = [];
 
   if (editingIndex >= 0) {
-    // Edit existing
     state.customSentences[lang][editingIndex] = text;
     showToast(t("toastUpdated"), "success");
     cancelEdit();
   } else {
-    // Add new
     state.customSentences[lang].push(text);
     showToast(t("toastAdded"), "success");
   }
@@ -899,16 +891,16 @@ function renderAboutTab(tab) {
       <div class="about-section">
         <h3>📖 ${bn ? "পরিচিতি" : "About"}</h3>
         <p>${bn
-          ? "টাইপিং প্র্যাকটিস প্রো একটি আধুনিক, দ্রুত এবং সম্পূর্ণ অফলাইন টাইপিং প্র্যাকটিস অ্যাপ। এটি ইংরেজি এবং বাংলা উভয় ভাষায় টাইপিং অনুশীলনের জন্য তৈরি।"
+          ? "টাইপিং প্র্যাকটিস প্রো একটি আধুনিক, দ্রুত এবং সম্পূর্ণ অফলাইন টাইপিং প্র্যাকটিস অ্যাপ। এটি ইংরেজি এবং বাংলা উভয় ভাষায় টাইপিং অনুশীলনের জন্য তৈরি।"
           : "Typing Practice Pro is a modern, fast and fully offline typing practice app. It is built for practicing typing in both English and Bengali."}</p>
         <p>${bn
-          ? "এই অ্যাপটি ভালোবাসা দিয়ে তৈরি করেছেন <strong>নিশাত হোসেন বাধন</strong> এর আইডিয়া ও তত্ত্বাবধানে, এবং কোড করেছেন <strong>DeepSeek AI</strong>।"
-          : "This app was crafted with love under the idea and guidance of <strong>Nishat Hossain Badhon</strong>, and coded by <strong>DeepSeek AI</strong>."}</p>
+          ? "এই অ্যাপটি ভালোবাসা দিয়ে তৈরি করেছেন <strong>নিশাত হোসেন বাধন</strong> এর আইডিয়া ও তত্ত্বাবধানে, এবং কোড করেছেন <strong>DeepSeek AI ও Gemini</strong>।"
+          : "This app was crafted with love under the idea and guidance of <strong>Nishat Hossain Badhon</strong>, and coded by <strong>DeepSeek AI & Gemini</strong>."}</p>
       </div>
       <div class="about-section">
         <h3>✨ ${bn ? "বৈশিষ্ট্য" : "Features"}</h3>
         <ul class="about-feature-list">
-          <li>⚡ ${bn ? "রিয়েল-টাইম WPM, CPM, Accuracy" : "Real-time WPM, CPM, Accuracy"}</li>
+          <li>⚡ ${bn ? "রিয়েল-টাইম WPM, CPM, Accuracy" : "Real-time WPM, CPM, Accuracy"}</li>
           <li>📝 ${bn ? "Words / Paragraph / Custom মোড" : "Words / Paragraph / Custom modes"}</li>
           <li>🌐 ${bn ? "ইংরেজি ও বাংলা সাপোর্ট" : "English & Bengali support"}</li>
           <li>🎯 ${bn ? "৩টি কঠিনতা স্তর" : "3 difficulty levels"}</li>
@@ -918,14 +910,12 @@ function renderAboutTab(tab) {
     `;
   } else if (tab === "v1") {
     body.innerHTML = `
-      <div class="about-version-title">✨ Version 1.2</div>
-      <div class="about-version-tag">${bn ? "বাগ ফিক্স" : "Bug Fix Release"}</div>
+      <div class="about-version-title">✨ Version 1.3</div>
+      <div class="about-version-tag">${bn ? "বাগ ফিক্স ও কিবোর্ড আপডেট" : "Bug Fix & Keyboard Update"}</div>
       <ul class="about-feature-list">
-        <li>✅ ${bn ? "শব্দ আর ভাঙবে না" : "Words don't break anymore"}</li>
-        <li>✅ ${bn ? "Welcome প্রতি বার দেখাবে" : "Welcome shows every time"}</li>
-        <li>✅ ${bn ? "কমা সাপোর্ট (মিডিয়াম/হার্ড)" : "Comma support (Medium/Hard)"}</li>
-        <li>✅ ${bn ? "কাস্টম সিস্টেম নতুন" : "New custom system"}</li>
-        <li>✅ ${bn ? "সেভ/এডিট/ডিলিট সাপোর্ট" : "Save/Edit/Delete support"}</li>
+        <li>✅ ${bn ? "কম্পিউটারে অভ্র/বিজয় বাংলা টাইপিং ফিক্সড" : "Computer Avro/Bijoy typing fixed"}</li>
+        <li>✅ ${bn ? "শব্দ ভেঙে যাওয়ার সমস্যা সমাধান" : "Word breaking issue resolved"}</li>
+        <li>✅ ${bn ? "নতুন কাস্টম সেভ/এডিট সিস্টেম" : "New custom save/edit system"}</li>
       </ul>
     `;
   } else if (tab === "v2") {
@@ -936,8 +926,6 @@ function renderAboutTab(tab) {
         <li>⏳ ${bn ? "লিডারবোর্ড" : "Leaderboard"}</li>
         <li>⏳ ${bn ? "অ্যাচিভমেন্ট ব্যাজ" : "Achievement badges"}</li>
         <li>⏳ ${bn ? "ডেইলি চ্যালেঞ্জ" : "Daily challenge"}</li>
-        <li>⏳ ${bn ? "পার্সোনালাইজড প্র্যাকটিস" : "Personalized practice"}</li>
-        <li>⏳ ${bn ? "ক্লাউড সিংক" : "Cloud sync"}</li>
       </ul>
     `;
   } else if (tab === "v3") {
@@ -946,18 +934,16 @@ function renderAboutTab(tab) {
       <div class="about-version-tag">${bn ? "AI ও অ্যাডভান্সড অ্যানালিটিক্স" : "AI & Advanced Analytics"}</div>
       <ul class="about-feature-list">
         <li>⏳ ${bn ? "AI কী-স্ট্রোক প্রেডিকশন" : "AI keystroke prediction"}</li>
-        <li>⏳ ${bn ? "ভয়েস-টু-টাইপ মোড" : "Voice-to-type mode"}</li>
-        <li>⏳ ${bn ? "ডিটেইলড গ্রাফ ও স্ট্যাটস" : "Detailed graphs & stats"}</li>
+        <li>⏳ ${bn ? "ভয়েস-টু-টাইপ মোড" : "Voice-to-type mode"}</li>
       </ul>
     `;
   } else if (tab === "v4") {
     body.innerHTML = `
       <div class="about-version-title">💎 Version 4.0</div>
-      <div class="about-version-tag">${bn ? "আল্টিমেট এক্সপেরিয়েন্স" : "The Ultimate Experience"}</div>
+      <div class="about-version-tag">${bn ? "আল্টিমেট এক্সপেরিয়েন্স" : "The Ultimate Experience"}</div>
       <ul class="about-feature-list">
         <li>⏳ ${bn ? "৩ডি ইন্টারফেস" : "3D interface"}</li>
         <li>⏳ ${bn ? "টাইপিং কোর্স মোড" : "Typing course mode"}</li>
-        <li>⏳ ${bn ? "সার্টিফিকেট জেনারেশন" : "Certificate generation"}</li>
       </ul>
     `;
   }
@@ -1016,7 +1002,7 @@ function clearFeedback() {
 /* ─── 26. BACKUP ──────────────────────────────────── */
 function exportData() {
   const data = {
-    version: "1.2",
+    version: "1.3",
     exportedAt: new Date().toISOString(),
     state: state
   };
@@ -1187,6 +1173,17 @@ function init() {
   renderAboutTab("about");
 
   const input = document.getElementById("input");
+  
+  // ★ কম্পিউটার কিবোর্ড (Avro/Bijoy) কম্পোজিশন ইভেন্ট লিসেনারসমূহ
+  input.addEventListener("compositionstart", () => {
+    isComposing = true;
+  });
+
+  input.addEventListener("compositionend", (e) => {
+    isComposing = false;
+    handleInput(e);
+  });
+
   input.addEventListener("input", handleInput);
 
   document.addEventListener("keydown", (e) => {
@@ -1223,7 +1220,6 @@ function init() {
     bestScoreEl.textContent = Math.max(state.bestScores.en, state.bestScores.bn) || 0;
   }
 
-  // Enter key in saved input = Add
   const savedInput = document.getElementById("savedAddInput");
   if (savedInput) {
     savedInput.addEventListener("keydown", (e) => {

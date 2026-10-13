@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════════════════
-   Typing Practice Pro — Stylesheet (v1.2)
+   Typing Practice Pro — Stylesheet (v1.3 — Bug Fix)
    Idea & Advisor: Nishat Hossain Badhon
-   Crafted by: DeepSeek AI
+   Crafted by: DeepSeek AI & Gemini
    ═══════════════════════════════════════════════════════ */
 
 /* ─── 1. THEME VARIABLES ─────────────────────────── */
@@ -301,7 +301,7 @@ input, select, textarea { font-family: inherit; }
   gap: 20px;
 }
 
-/* ═══ TEXT DISPLAY (WORD BREAK FIXED) ═══ */
+/* ═══ TEXT DISPLAY (WORD BREAK & SPAN FIXED) ═══ */
 .text-display {
   font-size: 22px;
   line-height: 2;
@@ -313,20 +313,24 @@ input, select, textarea { font-family: inherit; }
   width: 100%;
   min-height: 160px;
   max-height: 340px;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow-y: hidden;
+  overflow-x: auto;
   border: 1px solid var(--border);
   box-shadow: 0 4px 20px var(--shadow);
 
-  /* ★ Word breaking prevention ★ */
-  white-space: normal;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  word-break: keep-all;   /* ← মূল ফিক্স */
-  hyphens: none;
+  /* ★ শব্দের মাঝখান থেকে ভাঙা চিরতরে বন্ধ করার সঠিক কনফিগারেশন ★ */
+  white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
   text-align: left;
   transition: all 0.2s;
 }
+
+.text-display span {
+  display: inline;
+}
+
+
 
 .text-display span.correct { color: var(--correct); }
 .text-display span.wrong {
@@ -596,7 +600,7 @@ input, select, textarea { font-family: inherit; }
   50%      { opacity: 0.6; }
 }
 
-/* ─── 11. SAVED SENTENCES MODAL (নতুন) ───────────── */
+/* ─── 11. SAVED SENTENCES MODAL ──────────────────── */
 .custom-tabs {
   display: flex;
   gap: 8px;
@@ -648,7 +652,6 @@ input, select, textarea { font-family: inherit; }
   flex-wrap: wrap;
 }
 
-/* Saved List */
 .saved-list-header {
   display: flex;
   justify-content: space-between;
@@ -747,7 +750,6 @@ input, select, textarea { font-family: inherit; }
   border-color: var(--wrong);
 }
 
-/* Custom selector text - short preview */
 .cfg-item select.custom-short {
   max-width: 220px;
 }
